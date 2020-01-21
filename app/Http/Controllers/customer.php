@@ -24,7 +24,7 @@ class customer extends Controller
      */
     public function create()
     {
-        //
+       return customer_model::all();
     }
 
     /**
