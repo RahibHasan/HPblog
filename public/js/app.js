@@ -2205,6 +2205,186 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['name'],
   mounted: function mounted() {
@@ -2221,13 +2401,62 @@ __webpack_require__.r(__webpack_exports__);
       customer_phone_no: '',
       customer_contact_person: '',
       customer_person_phone: '',
-      customer_list: {}
+      customer_list: {},
+      CustomerEdit: {
+        customer_name: '',
+        customer_email: '',
+        customer_password: '',
+        customer_address: '',
+        customer_city: '',
+        customer_zip_code: '',
+        customer_phone_no: '',
+        customer_contact_person: '',
+        customer_person_phone: ''
+      }
     };
   },
-  created: function created() {
-    console.log('mounted');
-  },
+  created: function created() {},
   methods: {
+    update_customer: function update_customer() {
+      var _this = this;
+
+      console.log(_this.CustomerEdit);
+      axios.put('/customer/' + _this.CustomerEdit.customer_id, _this.CustomerEdit).then(function (response) {
+        console.log(response);
+
+        if (response.status = 200) {
+          Toast.fire({
+            type: 'success',
+            title: 'Great succesfully Edit new customer.'
+          });
+
+          _this.getcustomer();
+        }
+      })["catch"](function (error) {
+        toastr.error(error);
+      });
+    },
+    Editcustomer: function Editcustomer(id) {
+      var _this = this;
+
+      axios.get('/customer/' + id).then(function (response) {
+        _this.CustomerEdit = response.data;
+
+        if (response.status = 200) {
+          _this.CustomerEdit.customer_name = response.data.customer_name;
+          _this.CustomerEdit.customer_email = response.data.customer_email;
+          _this.CustomerEdit.customer_password = response.data.customer_password;
+          _this.CustomerEdit.customer_city = response.data.customer_city;
+          _this.CustomerEdit.customer_zip_code = response.data.customer_zip_code;
+          _this.CustomerEdit.customer_phone_no = response.data.customer_phone_no;
+          _this.CustomerEdit.customer_contact_person = response.data.customer_contact_person;
+          _this.CustomerEdit.customer_person_phone = response.data.customer_person_phone;
+          _this.CustomerEdit.customer_address = response.data.customer_address;
+        }
+      })["catch"](function (error) {
+        toastr.error(error);
+      });
+    },
     getcustomer: function getcustomer() {
       var _this = this;
 
@@ -38670,6 +38899,404 @@ var render = function() {
                 ]
               )
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              attrs: { action: "/api/customer", method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.update_customer()
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "modal fade",
+                  attrs: { id: "modal-default-edit" }
+                },
+                [
+                  _c("div", { staticClass: "modal-dialog" }, [
+                    _c("div", { staticClass: "modal-content" }, [
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-sm-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [_vm._v("Customer Name ")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.CustomerEdit.customer_name,
+                                    expression: "CustomerEdit.customer_name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "customer_name",
+                                  placeholder: "Enter ..."
+                                },
+                                domProps: {
+                                  value: _vm.CustomerEdit.customer_name
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.CustomerEdit,
+                                      "customer_name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-6" }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [_vm._v("Customer Email ")]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "input-group mb-3" }, [
+                                _vm._m(7),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.CustomerEdit.customer_email,
+                                      expression: "CustomerEdit.customer_email"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "edit_customer_email",
+                                    type: "email",
+                                    placeholder: "Email"
+                                  },
+                                  domProps: {
+                                    value: _vm.CustomerEdit.customer_email
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.CustomerEdit,
+                                        "customer_email",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [_vm._v("Customer Password ")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.CustomerEdit.customer_password,
+                                    expression: "CustomerEdit.customer_password"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "edit_customer_password",
+                                  type: "password",
+                                  placeholder: ""
+                                },
+                                domProps: {
+                                  value: _vm.CustomerEdit.customer_password
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.CustomerEdit,
+                                      "customer_password",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [_vm._v("Customer Address ")]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.CustomerEdit.customer_address,
+                                    expression: "CustomerEdit.customer_address"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "customer_address",
+                                  rows: "3",
+                                  placeholder: "Enter ..."
+                                },
+                                domProps: {
+                                  value: _vm.CustomerEdit.customer_address
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.CustomerEdit,
+                                      "customer_address",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [_vm._v("Customer City ")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.CustomerEdit.customer_city,
+                                    expression: "CustomerEdit.customer_city"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "customer_city",
+                                  type: "text",
+                                  placeholder: "Enter City..."
+                                },
+                                domProps: {
+                                  value: _vm.CustomerEdit.customer_city
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.CustomerEdit,
+                                      "customer_city",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [_vm._v("Zip Code ")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.CustomerEdit.customer_zip_code,
+                                    expression: "CustomerEdit.customer_zip_code"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "zip_code", type: "number" },
+                                domProps: {
+                                  value: _vm.CustomerEdit.customer_zip_code
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.CustomerEdit,
+                                      "customer_zip_code",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [_vm._v("Mobile Number")]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "input-group" }, [
+                                _vm._m(8),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.CustomerEdit.customer_phone_no,
+                                      expression:
+                                        "CustomerEdit.customer_phone_no"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "edit_customer_mobile_number",
+                                    type: "text",
+                                    "data-inputmask":
+                                      '"mask": "(+880) 17-51783698"',
+                                    "data-mask": "",
+                                    "im-insert": "true"
+                                  },
+                                  domProps: {
+                                    value: _vm.CustomerEdit.customer_phone_no
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.CustomerEdit,
+                                        "customer_phone_no",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [_vm._v("Contact Person ")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value:
+                                      _vm.CustomerEdit.customer_contact_person,
+                                    expression:
+                                      "CustomerEdit.customer_contact_person"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "contact_person", type: "text" },
+                                domProps: {
+                                  value:
+                                    _vm.CustomerEdit.customer_contact_person
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.CustomerEdit,
+                                      "customer_contact_person",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-6" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [
+                                _vm._v("Contact Person Mobile Number")
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "input-group" }, [
+                                _vm._m(9),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value:
+                                        _vm.CustomerEdit.customer_person_phone,
+                                      expression:
+                                        "CustomerEdit.customer_person_phone"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "contact_person_mobile",
+                                    type: "text",
+                                    "data-inputmask":
+                                      '"mask": "(+880) 17-51783698"',
+                                    "data-mask": "",
+                                    "im-insert": "true"
+                                  },
+                                  domProps: {
+                                    value:
+                                      _vm.CustomerEdit.customer_person_phone
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.CustomerEdit,
+                                        "customer_person_phone",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ])
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(10)
+                    ])
+                  ])
+                ]
+              )
+            ]
           )
         ]),
         _vm._v(" "),
@@ -38681,25 +39308,50 @@ var render = function() {
               attrs: { id: "example1" }
             },
             [
-              _vm._m(6),
+              _vm._m(11),
               _vm._v(" "),
               _c(
                 "tbody",
                 _vm._l(_vm.customer_list, function(value, index) {
                   return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(value.customer_id))]),
+                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(value.customer_name))]),
                     _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(value.customer_email))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(value.customer_phone_no))]),
+                    _vm._v(" "),
                     _c("td", [
-                      _vm._v(
-                        "Internet\n                 Explorer 4.0\n               "
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-block btn-outline-primary btn-flat",
+                          attrs: {
+                            type: "button",
+                            "data-toggle": "modal",
+                            "data-target": "#modal-default-edit"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.Editcustomer(value.customer_id)
+                            }
+                          }
+                        },
+                        [_vm._v("Edit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-block btn-outline-danger btn-flat",
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v("Delete")]
                       )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Win 95+")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(" 4")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("X")])
+                    ])
                   ])
                 }),
                 0
@@ -38808,17 +39460,92 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Customer (EDIT)")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-envelope" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-phone" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-phone" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer justify-content-between" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm bg-gradient-danger btn-flat",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Back To List")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm bg-gradient-success btn-flat",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Success")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
+        _c("th", [_vm._v("Customer ID")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Customer Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Browser")]),
+        _c("th", [_vm._v("Customer Email")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Platform(s)")]),
+        _c("th", [_vm._v("Customer Phone")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Engine version")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("CSS grade")])
+        _c("th", [_vm._v("Action")])
       ])
     ])
   }

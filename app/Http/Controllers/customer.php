@@ -50,7 +50,8 @@ class customer extends Controller
      */
     public function show($id)
     {
-        //
+        $data = customer_model::where('customer_id',$id)->first();
+        return $data;
     }
 
     /**
@@ -73,7 +74,8 @@ class customer extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+         customer_model::where('customer_id',$id)->first()->fill($request->all())->save();
     }
 
     /**
