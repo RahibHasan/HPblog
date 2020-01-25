@@ -34,6 +34,7 @@
 		},
 		created()
 		{
+			this.LoadingStatus();
 			 //console.log(this.$route.meta.title);
 			 this.second_data=this.$route.meta.title;
 			 //this.second_data=this.breadcrumb;

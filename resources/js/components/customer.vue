@@ -375,7 +375,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(value,index) in customer_list"> 
+                <tr v-for="(value,index) in customer_list.data"> 
                   <td>{{value.customer_id}}</td>
                   <td>{{value.customer_name}}</td>
                   <td>{{value.customer_email}}</td>
@@ -389,6 +389,10 @@
                  
                 </tr>
                 </tbody>
+                <pagination :data="customer_list"  :limit=3  @pagination-change-page="getcustomer">
+                  <span slot="prev-nav">&lt; Previous</span>
+                  <span slot="next-nav">Next &gt;</span>
+              </pagination>
               </table>
             </div>
             <!-- /.card-body -->
@@ -485,10 +489,10 @@
               toastr.error(error);
             });
           },
-          getcustomer:function(){
+          getcustomer:function(page=1){
             const _this=this;
-            axios.get('/customer/create').then(function(response){
-              
+            axios.get('/customer/create?page=' + page).then(function(response){
+              console.log(response);
               if(response.status=200)
               {
                 

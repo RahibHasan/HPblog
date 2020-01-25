@@ -10,12 +10,33 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 import {routes} from './router' ;
 import axios from 'axios'
-
+import VueLoading from 'vuejs-loading-plugin'
+import myVueComponent from './components/loader';
 Vue.use(axios)
 Vue.use(VueRouter)
+Vue.use(VueLoading)
+Vue.component('pagination', require('laravel-vue-pagination'));
+// overwrite defaults
+Vue.use(VueLoading, {
+  dark: true, // default false
+  text: 'Ladataan', // default 'Loading'
+  loading: true, // default false
+  customLoader: myVueComponent, // replaces the spinner and text with your own
+  background: 'rgb(255,255,255)', // set custom background
+  classes: ['myclass'] // array, object or string
+});
 
 
-
+// All Global
+Vue.mixin({
+    
+     methods:{
+         LoadingStatus:function(){
+             this.$loading(true)
+             setTimeout(() => this.$loading(false), 1000)
+         }
+     }
+});
 
 /**
  * The following block of code may be used to automatically register your

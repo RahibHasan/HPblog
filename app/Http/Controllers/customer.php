@@ -24,7 +24,8 @@ class customer extends Controller
      */
     public function create()
     {
-       return customer_model::all();
+        $getcustomer=customer_model::paginate(1);
+        return response()->json($getcustomer); 
     }
 
     /**
